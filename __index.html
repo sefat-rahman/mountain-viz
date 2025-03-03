@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Viz 2025</title>
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Alpine.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.0/cdn.min.js" defer></script>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles/custom.css">
+</head>
+
+<body>
+    <!-- Back to top button -->
+    <a href="#top" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" id="top" x-data="{ isOpen: false }">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#home">
+                    <img src="./assets/images/logo.png" alt="Conference Logo">
+                </a>
+
+                <a role="button" class="navbar-burger" :class="{ 'is-active': isOpen }" aria-label="menu"
+                    aria-expanded="false" @click="isOpen = !isOpen">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div class="navbar-menu" :class="{ 'is-active': isOpen }">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="#home">Home</a>
+                    <a class="navbar-item" href="#location">Location</a>
+                    <a class="navbar-item" href="#registration">Registration</a>
+                    <a class="navbar-item" href="#schedule">Schedule</a>
+                    <a class="navbar-item" href="#organizers">Organizers</a>
+                    <a class="navbar-item" href="#sponsors">Sponsors</a>
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-dark is-outlined btn-rounded" href="#registration">
+                                <strong>Register Now</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero is-large" id="home">
+        <div class="hero-pattern"></div>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-8-desktop fade-in">
+                        <h1 class="title is-1 has-text-centered">Mountain Viz 2025</h1>
+                        <h2 class="subtitle is-3 has-text-centered">Lorem ipsum dolor sit amet</h2>
+                        <p class="has-text-centered is-size-5 mb-6">May 23-25, 2025 • Warnock Engineering Building (WEB)
+                            •
+                            Salt Lake City, UT</p>
+                        <div class="buttons is-centered mt-6">
+                            <a href="#registration" class="button is-white btn-rounded is-medium">Register Now</a>
+                            <a href="#schedule" class="button is-outlined is-white btn-rounded is-medium">View
+                                Schedule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section" id="location">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8-desktop">
+                    <h2 class="title is-2 has-text-centered mb-6 fade-in">Location</h2>
+                </div>
+            </div>
+
+            <div class="columns is-centered is-multiline">
+                <div class="column is-6-desktop fade-in">
+                    <div class="content">
+                        <h3 class="title is-4"><a href="https://testingcenter.utah.edu/directions/web.php">Warnock
+                                Engineering Building (WEB)</a></h3>
+                        <p class="is-size-5">University of Utah <br> 72 S Central Campus Dr.<br>Salt Lake City, UT 84112
+                        </p>
+                        <!-- <p>The University Grand Hall offers state-of-the-art facilities in the heart of Boston. Located
+                            just minutes from public transportation and surrounded by hotels, restaurants, and cultural
+                            attractions.</p>
+
+                        <div class="mt-5">
+                            <h4 class="title is-5">Getting There</h4>
+                            <div class="columns">
+                                <div class="column">
+                                    <p><strong><i class="fas fa-plane mr-2"></i> By Air:</strong> Boston Logan
+                                        International Airport (BOS) is located 4 miles from the venue. Taxi services and
+                                        public transportation are readily available.</p>
+                                </div>
+                                <div class="column">
+                                    <p><strong><i class="fas fa-subway mr-2"></i> Public Transit:</strong> The Central
+                                        Square subway station is a 5-minute walk from the venue.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9533.294827906182!2d-111.85009842017969!3d40.76688371205976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87525f91e295b503%3A0xa9a0aa28bb02cf21!2s50%20S%20S%20Central%20Campus%20Dr%20%232110%2C%20Salt%20Lake%20City%2C%20UT%2084112!5e1!3m2!1sen!2sus!4v1740962904863!5m2!1sen!2sus"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="section has-background-white-bis" id="registration">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8-desktop">
+                    <h2 class="title is-2 has-text-centered mb-6 fade-in">Registration</h2>
+                    <p class="has-text-centered is-size-5 mb-6 fade-in">Secure your spot at the Mountain Viz 2025 by
+                        completing our registration form.</p>
+
+                    <!-- <div class="columns is-centered is-multiline">
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="card">
+                                <div class="card-content has-text-centered">
+                                    <h3 class="title is-4">Student</h3>
+                                    <p class="title">$99</p>
+                                    <div class="content">
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> All sessions</li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Conference materials
+                                            </li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Lunch & refreshments
+                                            </li>
+                                            <li><i class="fas fa-times mr-2 has-text-danger"></i> Gala dinner</li>
+                                            <li><i class="fas fa-times mr-2 has-text-danger"></i> Workshop access</li>
+                                        </ul>
+                                        <p class="is-size-7 mt-4">* Valid student ID required</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="https://forms.google.com"
+                                        class="card-footer-item button is-dark is-fullwidth">Register</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="card" style="border: 2px solid var(--dark);">
+                                <div class="card-content has-text-centered">
+                                    <h3 class="title is-4">Academic</h3>
+                                    <p class="title">$249</p>
+                                    <div class="content">
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> All sessions</li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Conference materials
+                                            </li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Lunch & refreshments
+                                            </li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Gala dinner</li>
+                                            <li><i class="fas fa-times mr-2 has-text-danger"></i> Workshop access</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="https://forms.google.com"
+                                        class="card-footer-item button is-dark is-fullwidth">Register</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="card">
+                                <div class="card-content has-text-centered">
+                                    <h3 class="title is-4">Industry</h3>
+                                    <p class="title">$399</p>
+                                    <div class="content">
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> All sessions</li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Conference materials
+                                            </li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Lunch & refreshments
+                                            </li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Gala dinner</li>
+                                            <li><i class="fas fa-check mr-2 has-text-success"></i> Workshop access</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="https://forms.google.com"
+                                        class="card-footer-item button is-dark is-fullwidth">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="has-text-centered mt-6 fade-in">
+                        <a href="https://forms.google.com" class="button is-medium is-dark btn-rounded">
+                            <span class="icon">
+                                <i class="fab fa-google"></i>
+                            </span>
+                            <span>Complete Registration Form</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-10-desktop">
+                    <h2 class="title is-2 has-text-centered mb-6 fade-in">Conference Schedule</h2>
+
+                    <div class="tabs is-centered is-boxed fade-in" x-data="{ activeTab: 'day1' }">
+                        <ul>
+                            <li :class="{ 'is-active': activeTab === 'day1' }">
+                                <a @click="activeTab = 'day1'">
+                                    <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
+                                    <span>Day 1 (May 15)</span>
+                                </a>
+                            </li>
+                            <li :class="{ 'is-active': activeTab === 'day2' }">
+                                <a @click="activeTab = 'day2'">
+                                    <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
+                                    <span>Day 2 (May 16)</span>
+                                </a>
+                            </li>
+                            <li :class="{ 'is-active': activeTab === 'day3' }">
+                                <a @click="activeTab = 'day3'">
+                                    <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
+                                    <span>Day 3 (May 17)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content fade-in" x-data="{ activeTab: 'day1' }">
+                        <!-- Day 1 Schedule -->
+                        <div x-show="activeTab === 'day1'" class="mt-5">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">8:00 AM - 9:00 AM</p>
+                                        <h3 class="title is-5">Registration & Breakfast</h3>
+                                        <p>Main Lobby</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">9:00 AM - 10:00 AM</p>
+                                        <h3 class="title is-5">Opening Ceremony & Keynote</h3>
+                                        <p>Speaker: Prof. Jane Smith, Stanford University</p>
+                                        <p>Topic: The Future of Research in Our Field</p>
+                                        <p>Main Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">10:15 AM - 12:00 PM</p>
+                                        <h3 class="title is-5">Session 1: Recent Advances</h3>
+                                        <p>Chair: Prof. Robert Johnson</p>
+                                        <ul>
+                                            <li>10:15 - 10:45: "Title of Paper 1" - Author A, University X</li>
+                                            <li>10:45 - 11:15: "Title of Paper 2" - Author B, University Y</li>
+                                            <li>11:15 - 11:45: "Title of Paper 3" - Author C, University Z</li>
+                                            <li>11:45 - 12:00: Q&A</li>
+                                        </ul>
+                                        <p>Room 101</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">12:00 PM - 1:30 PM</p>
+                                        <h3 class="title is-5">Lunch Break</h3>
+                                        <p>Networking opportunity</p>
+                                        <p>Dining Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">1:30 PM - 3:15 PM</p>
+                                        <h3 class="title is-5">Session 2: Methodological Innovations</h3>
+                                        <p>Chair: Dr. Sarah Lee</p>
+                                        <ul>
+                                            <li>1:30 - 2:00: "Title of Paper 4" - Author D, University W</li>
+                                            <li>2:00 - 2:30: "Title of Paper 5" - Author E, University V</li>
+                                            <li>2:30 - 3:00: "Title of Paper 6" - Author F, University U</li>
+                                            <li>3:00 - 3:15: Q&A</li>
+                                        </ul>
+                                        <p>Room 102</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">3:15 PM - 3:45 PM</p>
+                                        <h3 class="title is-5">Coffee Break</h3>
+                                        <p>Main Lobby</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">3:45 PM - 5:30 PM</p>
+                                        <h3 class="title is-5">Poster Session</h3>
+                                        <p>Over 50 posters from researchers around the world</p>
+                                        <p>Exhibition Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">6:00 PM - 8:00 PM</p>
+                                        <h3 class="title is-5">Welcome Reception</h3>
+                                        <p>Light refreshments and networking</p>
+                                        <p>Rooftop Terrace</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 2 Schedule -->
+                        <div x-show="activeTab === 'day2'" class="mt-5">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">8:30 AM - 9:00 AM</p>
+                                        <h3 class="title is-5">Morning Coffee</h3>
+                                        <p>Main Lobby</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">9:00 AM - 10:00 AM</p>
+                                        <h3 class="title is-5">Keynote Speech</h3>
+                                        <p>Speaker: Dr. Michael Chen, Industry Leader</p>
+                                        <p>Topic: Bridging Academia and Industry</p>
+                                        <p>Main Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">10:15 AM - 12:00 PM</p>
+                                        <h3 class="title is-5">Session 3: Applied Research</h3>
+                                        <p>Chair: Prof. Thomas Wilson</p>
+                                        <ul>
+                                            <li>10:15 - 10:45: "Title of Paper 7" - Author G, University T</li>
+                                            <li>10:45 - 11:15: "Title of Paper 8" - Author H, University S</li>
+                                            <li>11:15 - 11:45: "Title of Paper 9" - Author I, University R</li>
+                                            <li>11:45 - 12:00: Q&A</li>
+                                        </ul>
+                                        <p>Room 101</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">12:00 PM - 1:30 PM</p>
+                                        <h3 class="title is-5">Lunch Break</h3>
+                                        <p>Networking opportunity</p>
+                                        <p>Dining Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">1:30 PM - 3:15 PM</p>
+                                        <h3 class="title is-5">Session 4: Future Directions</h3>
+                                        <p>Chair: Dr. Emily Davis</p>
+                                        <ul>
+                                            <li>1:30 - 2:00: "Title of Paper 10" - Author J, University Q</li>
+                                            <li>2:00 - 2:30: "Title of Paper 11" - Author K, University P</li>
+                                            <li>2:30 - 3:00: "Title of Paper 12" - Author L, University O</li>
+                                            <li>3:00 - 3:15: Q&A</li>
+                                        </ul>
+                                        <p>Room 102</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">3:15 PM - 3:45 PM</p>
+                                        <h3 class="title is-5">Coffee Break</h3>
+                                        <p>Main Lobby</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">3:45 PM - 5:30 PM</p>
+                                        <h3 class="title is-5">Workshop: Practical Applications</h3>
+                                        <p>Facilitator: Dr. Rebecca Martin</p>
+                                        <p>Workshop Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">7:00 PM - 10:00 PM</p>
+                                        <h3 class="title is-5">Gala Dinner</h3>
+                                        <p>Formal dinner and awards ceremony</p>
+                                        <p>Grand Ballroom</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 3 Schedule -->
+                        <div x-show="activeTab === 'day3'" class="mt-5">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">8:30 AM - 9:00 AM</p>
+                                        <h3 class="title is-5">Morning Coffee</h3>
+                                        <p>Main Lobby</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">9:00 AM - 10:30 AM</p>
+                                        <h3 class="title is-5">Panel Discussion</h3>
+                                        <p>Topic: "Challenges and Opportunities in Our Field"</p>
+                                        <p>Panelists: Prof. Smith, Dr. Chen, Prof. Johnson, Dr. Lee</p>
+                                        <p>Main Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">10:45 AM - 12:30 PM</p>
+                                        <h3 class="title is-5">Session 5: New Research Areas</h3>
+                                        <p>Chair: Prof. Karen Taylor</p>
+                                        <ul>
+                                            <li>10:45 - 11:15: "Title of Paper 13" - Author M, University N</li>
+                                            <li>11:15 - 11:45: "Title of Paper 14" - Author N, University M</li>
+                                            <li>11:45 - 12:15: "Title of Paper 15" - Author O, University L</li>
+                                            <li>12:15 - 12:30: Q&A</li>
+                                        </ul>
+                                        <p>Room 101</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">12:30 PM - 2:00 PM</p>
+                                        <h3 class="title is-5">Lunch Break</h3>
+                                        <p>Networking opportunity</p>
+                                        <p>Dining Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">2:00 PM - 3:30 PM</p>
+                                        <h3 class="title is-5">Closing Keynote</h3>
+                                        <p>Speaker: Prof. David Williams</p>
+                                        <p>Topic: "Looking Forward: The Next Decade of Research"</p>
+                                        <p>Main Hall</p>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <p class="heading">3:30 PM - 4:00 PM</p>
+                                        <h3 class="title is-5">Closing Remarks & Announcements</h3>
+                                        <p>Conference chairs</p>
+                                        <p>Main Hall</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="has-text-centered mt-6 fade-in">
+                        <a href="#" class="button is-medium is-dark btn-rounded">
+                            <span class="icon">
+                                <i class="fas fa-download"></i>
+                            </span>
+                            <span>Download Full Schedule (PDF)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizers Section -->
+    <section class="section has-background-white-bis" id="organizers">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-10-desktop">
+                    <h2 class="title is-2 has-text-centered mb-6 fade-in">Conference Organizers</h2>
+
+                    <div class="columns is-centered is-multiline">
+                        <!-- Organizer 1 -->
+                        <div class="column is-3-desktop is-4-tablet is-6-mobile fade-in">
+                            <div class="card organizer-card">
+                                <div class="card-content">
+                                    <div class="image is-128x128 mb-4">
+                                        <img src="/api/placeholder/400/400" alt="Prof. Robert Johnson">
+                                    </div>
+                                    <h3 class="title is-4">Prof. Robert Johnson</h3>
+                                    <p class="subtitle is-6">Conference Chair</p>
+                                    <p>Harvard University</p>
+                                    <div class="mt-4">
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-envelope fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-globe fa-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Organizer 2 -->
+                        <div class="column is-3-desktop is-4-tablet is-6-mobile fade-in">
+                            <div class="card organizer-card">
+                                <div class="card-content">
+                                    <div class="image is-128x128 mb-4">
+                                        <img src="/api/placeholder/400/400" alt="Dr. Sarah Lee">
+                                    </div>
+                                    <h3 class="title is-4">Dr. Sarah Lee</h3>
+                                    <p class="subtitle is-6">Program Chair</p>
+                                    <p>MIT</p>
+                                    <div class="mt-4">
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-envelope fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-globe fa-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Organizer 3 -->
+                        <div class="column is-3-desktop is-4-tablet is-6-mobile fade-in">
+                            <div class="card organizer-card">
+                                <div class="card-content">
+                                    <div class="image is-128x128 mb-4">
+                                        <img src="/api/placeholder/400/400" alt="Prof. Thomas Wilson">
+                                    </div>
+                                    <h3 class="title is-4">Prof. Thomas Wilson</h3>
+                                    <p class="subtitle is-6">Organizing Chair</p>
+                                    <p>Stanford University</p>
+                                    <div class="mt-4">
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-envelope fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-globe fa-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Organizer 4 -->
+                        <div class="column is-3-desktop is-4-tablet is-6-mobile fade-in">
+                            <div class="card organizer-card">
+                                <div class="card-content">
+                                    <div class="image is-128x128 mb-4">
+                                        <img src="/api/placeholder/400/400" alt="Dr. Emily Davis">
+                                    </div>
+                                    <h3 class="title is-4">Dr. Emily Davis</h3>
+                                    <p class="subtitle is-6">Publications Chair</p>
+                                    <p>University of Chicago</p>
+                                    <div class="mt-4">
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-envelope fa-lg"></i>
+                                        </a>
+                                        <a href="#" class="icon is-medium">
+                                            <i class="fas fa-globe fa-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columns is-centered mt-5">
+                        <div class="column is-8-desktop has-text-centered fade-in">
+                            <div class="content">
+                                <h3 class="title is-4">Program Committee</h3>
+                                <div class="columns is-multiline">
+                                    <div class="column is-4">Prof. Jane Smith, Stanford University</div>
+                                    <div class="column is-4">Dr. Michael Chen, Industry Leader</div>
+                                    <div class="column is-4">Prof. David Williams, Oxford University</div>
+                                    <div class="column is-4">Dr. Rebecca Martin, Microsoft Research</div>
+                                    <div class="column is-4">Prof. Karen Taylor, ETH Zurich</div>
+                                    <div class="column is-4">Dr. James Wilson, Google AI</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="section" id="sponsors">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-10-desktop">
+                    <h2 class="title is-2 has-text-centered mb-6 fade-in">Our Sponsors</h2>
+
+                    <div class="content has-text-centered mb-6 fade-in">
+                        <p>We are grateful to the following organizations for their generous support of the Mountain Viz
+                            2025.</p>
+                    </div>
+
+                    <div class="columns is-centered is-multiline mb-6">
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="sponsor-logo card">
+                                <img src="/api/placeholder/300/150" alt="Sponsor 1">
+                            </div>
+                        </div>
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="sponsor-logo card">
+                                <img src="/api/placeholder/300/150" alt="Sponsor 2">
+                            </div>
+                        </div>
+                        <div class="column is-4-desktop is-6-tablet fade-in">
+                            <div class="sponsor-logo card">
+                                <img src="/api/placeholder/300/150" alt="Sponsor 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="has-text-centered mt-6 fade-in">
+                        <a href="#" class="button is-medium is-dark btn-rounded">
+                            <span class="icon">
+                                <i class="fas fa-handshake"></i>
+                            </span>
+                            <span>Become a Sponsor</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="content">
+                        <h3 class="title is-4 has-text-white">Mountain Viz 2025</h3>
+                        <p>Lorem ipsum dolor sit amet</p>
+                        <p>May 23-25, 2025 • Salt Lake City, UT</p>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="content">
+                        <h3 class="title is-4 has-text-white">Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#location">Location</a></li>
+                            <li><a href="#registration">Registration</a></li>
+                            <li><a href="#schedule">Schedule</a></li>
+                            <li><a href="#organizers">Organizers</a></li>
+                            <li><a href="#sponsors">Sponsors</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="content">
+                        <h3 class="title is-4 has-text-white">Contact Us</h3>
+                        <p><i class="fas fa-envelope mr-2"></i> conference2025@example.org</p>
+                        <p><i class="fas fa-phone mr-2"></i> +1 (123) 456-7890</p>
+                        <div class="social-icons mt-4">
+                            <a href="#" class="icon is-medium mr-2">
+                                <i class="fab fa-twitter fa-lg"></i>
+                            </a>
+                            <a href="#" class="icon is-medium mr-2">
+                                <i class="fab fa-facebook fa-lg"></i>
+                            </a>
+                            <a href="#" class="icon is-medium mr-2">
+                                <i class="fab fa-linkedin fa-lg"></i>
+                            </a>
+                            <a href="#" class="icon is-medium">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content has-text-centered mt-6">
+                <p>&copy; 2025 Academic Conference. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/scripts/main.js"></script>
+</body>
+
+</html>
